@@ -1,0 +1,3 @@
+  delete obj.name
+
+http://jquery.cuishifeng.cn/index.html

@@ -1,0 +1,61 @@
+
+点击一个按钮 让滚动条回到顶部
+
+	JQ下用 $('body,html').animate({scrollTop:0},2000);这个是有动画效果的
+
+	主要是scrollTop这个属性
+
+	原生的是；window.scrollBy(0,0); 第一个参数是x轴，第二个是y轴
+
+
+	让一个a连接失效的javascript <a href="javascript:void(0);">
+
+
+	返回上一个页面 javascript: <a href ="javascript:window.history.back();">
+
+
+	阻止手机上的默认事件：e.preventDefault();
+
+
+	用没有定义的变量--报错
+
+	用没有定义的属性--未定义
+
+	var a =12;  alert(a) -》12
+
+	var a=12   alert(window.a) -》12
+
+	如果没有定义任何变量
+
+	alert(a)-->就会报错
+
+	alert(window.a)-->会弹出未定义 这个是代表的是window的一个属性来的
+
+
+	ajax解决ie6下不兼容的问题  封装一个函数
+
+
+	function ajax(){
+
+
+		这里如果不用window的话 在IE6下就是表示未定义这个变量，
+		所以就会报错 就跟上面所说的一样，加了就表示属性了
+		而且值是未定义的 而这个未定义恰好是我们需要的判断条件
+
+		if(window.XMLHttpRequest){
+			
+			var xml = new XMLHttpRequest();
+		
+		}else{
+		
+			var xml = new ActiveXObject("Microsoft.XMLHttp");
+
+		}
+
+	}
+
+
+
+
+
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=d&cb=zed

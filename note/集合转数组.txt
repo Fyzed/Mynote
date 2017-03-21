@@ -1,0 +1,32 @@
+
+	1、创建一个空的数组，然后通过for循环和push 向空的数组里面插入集合的子元素来完成转换；
+
+		var arr=[];  var aa  aa：当做是一个集合
+
+		for（var i=0;i<aa.length;i++）{
+
+			arr.push(aa[i]);
+		}
+
+
+	2、克隆数组的方法
+
+		element.slice(0)  element为要克隆的数组
+
+
+	3、用数组的原型来把集合转换成数组
+
+
+		var  newArr = Array.prototype.slice.call(element,0); element为集合的名称；
+
+	
+
+	event属性：
+
+	blur：在元素失去焦点时触发。这个事件不会冒泡；所有浏览器都支持它。
+
+        focus：在元素获得焦点时触发。这个事件不会冒泡；所有浏览器都支持它
+
+        change : 内容被修改后并且失焦才触发
+
+        input : 改变内容时候就立刻触发  不支持IE8

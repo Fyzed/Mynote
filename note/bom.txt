@@ -1,0 +1,67 @@
+
+	bom 浏览器对象模型
+
+iE浏览器下 获取浏览器到桌面窗口的距离 但是它并没有提供任何判断窗口大小的方法
+
+
+	下面的不是标准的属性
+	window.screenLeft  获取浏览器到桌面窗口的left值
+
+	window.screenTop  获取浏览器到桌面窗口的Top值
+
+
+ie下获取浏览器可视窗口的大小：
+
+	document.body.offsetWidth 获取它的宽度
+
+	document.body.offsetHieght 获取它的高度
+
+
+火狐浏览器下或取浏览器到桌面窗口的距离
+
+	window.screenX 获取它的宽度
+
+	window.screenY 获取它的高度
+ 
+
+判断浏览器视口大小的方法：
+
+	window.innerWidth 获取它的宽度
+
+	window.innerHeight 获取它的高度
+
+
+判断浏览器窗口自身大小的方法：
+
+	window.outerWidth  获取浏览器自身的宽度
+
+	window.outerHeight 获取浏览器自身的高度
+
+
+窗口控制
+
+	moveBy(x,y)--从当前位置水平移动浏览器窗口x个像素，垂直引动浏览器窗口y个像素 x为负数的时		    	     候，将想做移动窗体，y为负数将向上移动窗体
+
+	moveTo(x,y)--移动窗体左上角到相对于 屏幕左上角的（x,y）点，当使用负数作为参数是会把窗体一		 处屏幕的可视区域
+	
+	resizeTo(w,h)--把窗体宽度调整为w个像素，高度调整为h个像素	
+
+窗体滚动条控制
+
+	scrollTo(x,y)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

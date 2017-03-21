@@ -1,0 +1,186 @@
+	
+
+	ajax： Asynchronous javascript and xml（异步javascript和xml）
+
+	有什么好处：可以节省用户操作，时间，提高用户体验，减少数据请求
+
+		    传输获取数据
+
+ajax 用来实现不改变地址栏的情况下局部刷新页面
+
+
+跨域：
+
+	浏览器禁止跨域
+
+	ajax请求必须在同一个域下
+
+	通过jsonp来解决跨域
+
+	后端通过设置 Access-Control-Allow-Origin 头部信息
+
+
+
+
+使用ajax的步骤
+
+1、首先要创建 一个ajax对象
+
+	var xhr = new XMLHttpRequest();
+
+2、向服务器发送请求 要用到ajax对象下的两个方法
+
+	xhr.open(method,url,async)：规定请求的类型，url 以及是否异步处理请求
+
+		method:请求的类型：GET或 POST
+
+		url:文件在服务器上的位置
+
+		async:true（异步） 或 false（同步）
+
+		同步：阻塞 前面的代码会影响后面代码的执行
+
+		异步：非阻塞 前面的代码不会影响后面代码的执行 （可以执行多件事情）
+
+	xhr.send(string); 将请求发送到服务器
+
+		string：仅用于post请求
+
+3、当请求被发送到服务器时，我们需要执行一些基于响应的任务
+
+	就要用 onreadystatechange 事件
+
+4、服务器响应
+	
+	然后我们就要获取响应后的数据 用xhr下的两个方法：
+
+	1、xhr.responseText ：获得字符串形式的响应数据
+
+	2、xhr.responseXML:获得xml形式的响应数据
+
+	我们一般只用第一种 第二种是后端用的
+
+	 
+ie 7下是不兼容的：
+	 
+把string类型转换成对象
+
+	JSON.parse（responseText） 这样就转换成功了
+
+把一个json的字符串转换成对象 那个json里面的key值一定要用双引号括起来 不然会报错的
+
+如：
+	var s1 = "{left:100}";
+
+	var s2 = JSON.parse(s1); 会报错的 一定要给left加双引号
+
+把对象转换成字符串的方法
+
+	JSON.stringfy(obj)
+
+
+服务器响应的时候会有执行五中状态
+
+	readyState:表示服务器响应式哪一种状态 它有五种状态 从0到4发生变化
+
+	0：请求未初始化
+
+	1：服务器连接已建立
+
+	2：请求已接受
+
+	3：请求处理中
+
+	4：请求已完成，且响应以就绪
+
+	status：是xhr与后台交互时返回的一个状态码 有两个状态码
+
+	200：表示后台交互成功 “ok”
+	
+	404：未找到页面；
+
+	每当readyState改变的时候都会触发 onreadystatechange事件
+
+	onreadystatechange :存储函数，每当readystate属性改变时，就会调用该函数
+
+	他一般都是用创建出来的对象绑定的 即：xhr.onreadystatechange = function(){};
+
+
+
+兼容性问题：也可以忽略的
+
+	就是创建ajax对象的时候 在ie6下打开会报错的 因为在ie6浏览器下不存在XMLHttpRequest这个对象
+
+	在ie6下创建ajax对象
+
+	var  xhr = new ActiveXObject(‘Microsoft.XMLHTTP’)
+
+	处理异常：
+
+	try{
+	
+	尝试执行的代码
+
+	}catch(e){
+	
+	报错的信息	
+	
+	}
+
+平常我们在javscript中如果有一个变量没有定义 你运行它的时候，它就会报错然后就会不执行后面的代码了
+
+但是用上面这个格式去写的话：把要执行的代码放到try中 ，如果有代码报错的话，他不会停止执行后面的代码的
+
+它会把那个错误的信息也就是那个e传到catch下，然后就会弹出报错的信息
+
+
+
+	表单：数据的提交
+
+	action：数据提交的地址，默认是当前页面
+
+	method：数据提交的方式：默认是get方式
+
+用法；<form action="要提交到那个地址" method="方式">
+
+	1、get（传递的数据都是以字符串的形式显示）
+
+		把数据名称和数据用=连接，如果有的多个的话，那么他会把多个数据组合用&进行连接，然后把数据
+
+		放到url？后面传到指定页面
+
+		ulrich长度限制的原因，我们不要通过get方式传递过多的数据
+
+	2、post
+	
+		理论上无限制
+
+	enctype:提交的数据格式，默认是application/x-www-form-urlencoded
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

@@ -1,0 +1,37 @@
+
+	手机端的触摸事件
+
+	ontouchstart 触屏开始
+
+	ontouchmove  拖拽
+
+	ontouchend   完成触屏
+
+	ontouchcancel  取消
+
+	当按下手指时，触发ontouchstare;
+
+	当移动手指时，触发ontouchmove;
+
+	当移走手指时，触发ontouchend;
+
+	当一些更高级别的事件发生的时候（如电话接入或者弹出信息） 会取消当前的touch操作
+	即触发ontouchcancel.一般hi在ontouchcancel时暂停游戏，存档等操作
+
+在移动端下获取手指的坐标
+
+	pageX ：获取x轴的坐标
+
+	pageY ：获取Y轴的坐标
+
+	因为在手机下可能用两个手指来滑动屏幕 所以获取手指坐标：
+
+	e.touches[0].pageX; 这里的0是获取第一个手指 如果是第二手指就用1；
+
+在手机端下绑定事件的时候
+
+	要加 e.preventDefault(); 这个是用来阻止手机端里面的一些默认事件的 
+
+				每绑定一次事件都要加这个
+
+	还要加上阻止冒泡：e.stopPropagation();

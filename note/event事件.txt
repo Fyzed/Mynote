@@ -1,0 +1,222 @@
+ 
+
+焦点事件
+
+
+	焦点：使浏览器能够区分用户输入的对象，当一个元素有焦点的时候
+
+		那么他就可以接受用户的输入。
+
+	我们可以通过一些方式给元素设置焦点
+
+	1.点击
+
+	2.tab
+
+	3.js
+
+		不是所有元素都能够接受焦点。能够相应用户操作的元素才有焦点
+
+
+	onfocus :当元素获取到焦点的时候触发
+
+		obj.focus() 给指定的元素设置焦点
+
+	onblur：当元素失去焦点的时候触发
+
+		obj.blur() 取消指定元素的焦点 
+
+		obj.select() 选择指定元素里面的文本内容 方便你去复制
+
+			  	而且这个方法只能操作能响应用户操作的元素 div是不行的
+
+
+Event对象 
+
+	event：事件对象，当一个事件发生的时候，和当前这个对象发生的这个时间有关的一些详细的信息
+
+		都会被临时保存到一个指定地方-event对象，供我们在需要的时候调用。
+
+
+	事件对象必须在一个事件调用的函数里面使用才有内容	
+
+	事件函数：事件调用的函数 ，一个函数是不是事件函数，不在定义的时候决定，而是取决于这个函数调用		  的时候
+
+	兼容：ie/chrome:event是一个内置全局对象
+
+		标准下：事件对象是通过事件函数的第一个参数传入
+
+	一个函数是被事件调用的，那么函数定义的第一个参数就是事件对象
+
+	解决兼容问题：
+
+	var ev = ev|| event;
+
+
+	document.clientX[Y] : 当一个事件发生的时候，获取鼠标到页面可视区的距离
+
+
+	onmousemove:当鼠标子啊一个元素上面移动的时候触发
+
+	触发的频率不是像素，而是间隔时间，在一个指定时间内（很短），如果鼠标的位置和上一次的位置
+
+	发生了变化，那么就会触发一次
+
+
+事件流
+
+
+	事件冒泡：当一个元素接受到事件的时候会把他接受到的所有传播给他的父级，一直到顶层window，事件冒泡机制
+
+		一个简单的例子：
+
+		<input type="button" id="btn" value="提交">
+		<div id="box"></div>
+
+		点击按钮让div显示，然后点击document让div隐藏
+
+		点击的时候因为事件冒泡的原因 div是不会显示的
+
+	阻止冒泡：当前要阻止冒泡的事件函数中调用 
+
+		event.cancelBubble = true; 默认值是false的
+
+		加上这个就可以阻止冒泡了
+
+	注意！！ 你在哪个对象那里添加了这个东西 它阻止的是当前对像的当前事件的冒泡
+
+
+
+事件捕获 
+
+	事件绑定：
+
+	第一种形式：给一个对象绑定一个事件处理函数
+
+	如：obj.onclick = fn; 这种就只能绑定一个函数
+
+	第二种形式：给一个对象的同一个事件绑定多个不同的函数
+
+	这个是有兼容问题的
+
+	ie下：obj.attachEvent(事件名称，事件函数)；
+
+		1、没有捕获
+
+		2、事件名称有on
+
+		3、事件函数执行的顺序：标准ie->正序  非标准ie：->反序
+
+		4、this指向window
+
+
+	标准下：obj.addEventListener(事件名称，事件函数，是否捕获)； 
+
+		1、有捕获
+
+		2、事件名称没有on
+
+		3、事件执行的顺序是正序
+
+		4、this指向触发该事件的对象
+
+
+	是否捕获：默认是 false  false：冒泡  ture： 捕获
+	
+
+call()  函数下的一个方法,call方法第一个参数可以改变函数执行过程中的内部this的指向，
+	
+	call方法第二个参数开始就是原来函数的参数列表；	
+
+	function fn1(){alert(this)}
+
+	调用这个函数的方法有：1、fn1(); 2、fn1.call();  即fn1() == fn1.call();
+
+	这个call方法就可以解决ie下那个this的指向了
+
+	obj.attachEvent(eventName,function(){
+		
+		fn1.call(obj)
+	})
+
+	这样this的指向就指向了调用了这个函数的对象
+
+	可以封装这个函数
+
+
+事件捕获：
+
+	<div id="div1">
+		<div id="div2">
+			<div id="div3">
+
+			</div>
+		</div>
+	</div>	
+
+ 	function fn1(){alert(this.id)};
+
+	div1.addEventListener("click",fn,false)
+	div2.addEventListener("click",fn,false)
+	div3.addEventListener("click",fn,false)
+
+	因为false = 冒泡
+
+	所以点击div3的时候 因为冒泡机制 div1 和div2 也会触发
+
+	所以弹出的结果是 div3 div2 div1
+
+	当false变成true的时候 = 捕获
+
+	div1.addEventListener("click",fn,true)
+	div2.addEventListener("click",fn,true)
+	div3.addEventListener("click",fn,true)
+
+	弹出的结果就是 div1 div2 div3；
+
+	两者的区别是 一个是从内部出来 一个是从外部进去 
+
+	捕获和冒泡就相当于一个作用力和反作用力 
+
+	//告诉div1如果有一个出去的事件触发了你，就执行里面的函数
+	div1.addEventListener("click",function(){
+		alert(1);
+	},false)
+
+	//告诉div1如果有一个进来的事件触发了你，就执行里面的函数
+	div1.addEventListener("click",function(){
+		alert(3);
+	},true)
+
+	div3.addEventListener("click",function(){
+		alert(2);
+	},false)
+
+	点击div3上面弹出的结果是 3 ，2 ，1；
+
+	为什么会是这样呢？就是因为一开始你点击div3的时候，事件要一层一层的进去的
+
+	然后div1设置了true 就表示捕获了 所以就会触发了这个函数，就会弹出3 然后进到
+
+	div3的时候，就变成了反作用然后就开始冒泡 一次弹出2,1；
+
+
+	
+
+事件的取消
+
+	第一种事件绑定形式的取消
+
+	function fn1(){alert(1)}
+
+	function fn2(){alert(2)}
+
+	document.onclick = fn1;
+
+	document.onclick = null;  //取消
+
+	第二种事件绑定形式的取消
+
+	document.detachEvent(on+事件名称，事件函数)
+
+	documnt.removeEventListener(事件名称，事件函数，是否捕获)

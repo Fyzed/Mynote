@@ -1,0 +1,136 @@
+
+	Dom Document Object Model 文档对象模型
+
+	文档：html页面
+
+	文档对象：页面中的元素
+
+	文档对象模型：定义  为了能够让程序（js）去操作页面中的元素
+
+	Dom会把文档看作是一棵树，同时定义了很多方法来操作者棵树中的每一个元素（节点）
+
+	Dom节点
+
+
+	document.getElementById();
+
+
+
+	Dom 基础
+
+	元素.childNodes  只读 属性 子节点列表集合
+
+			 标准下：包含了文本和元素类型的节点
+
+			非标准下（ie低版本）：只包含元素类型的节点
+
+	childNodes只包含一级子节点，不包含后背孙级一下的节点
+
+			 
+	Dom节点的类型有很多种 12种
+
+	元素.nodeType : 只读 属性 当前元素的节点类型
+
+	元素节点：1
+
+	属性节点：2
+
+	文本节点：3
+
+	元素.attributes 获取元素的属性值 返回的是一个对象  而且也是一个集合
+
+	元素.attributes.name:	访问的是元素属性
+
+	元素.attributes.lenght; 访问的是该元素有多少个属性
+
+	元素.attributes.value: 	访问的是元素的属性值
+
+
+	元素.children：只读属性 返回的是子节点集合
+
+	在标准下和非标准下都只包含元素类型的节点
+
+	
+   标准下获取元素的第一个子节点的方法：
+
+	元素.firstElementChild 只读属性
+
+   非标准下获取元素的第一个子节点的方法：
+
+	元素.firstChild  只读属性 如果在标准下使用 它返回的元素类型节点包括文本节点
+
+	获取元素的最后一个子节点
+
+	元素.lastChild 只读属性 也是会返回文本节点 兼容低版本
+
+	元素.lastElementChild 只读属性 要在标准下使用 兼容高版本
+
+
+	元素.nextSibling || 元素.nextElementSibling  同级的下一个元素 兼容性同上
+
+	元素.previousSibling || 元素.previousElementSibling 同级的上一个元素 兼容性同上
+
+
+
+	找元素的父节点的方法
+
+	元素.parentNode 只读属性 无兼容性问题
+
+
+	还有另外一种找父节点的方法
+
+   元素.offsetParent:只读属性 
+
+ 	寻找到的是有定位属性的父节点 如果有多个定位的属性的父节点的话 会找最近的那个的
+
+	如果没有定位父级，默认是body
+
+	ie7以下，如果当前元素没有定位默认是body。如果本身是有定位的话父级则是html
+
+	ie7以下，如果当前元素的某个父级触发了layout，那么offsetParent就会
+		被指向到这个触发了layout特性的父节点上
+
+
+	元素.offsetLeft[top] 只读属性 获取当前元素到定位父级的距离（偏移值）
+
+				到当前元素的offsetParent的距离
+
+
+		如果没有定位父级
+
+			offsetparent -》body
+
+			offsetLeft ->html
+
+		在ie7下：如果父级有定位属性 自身没有定位属性
+
+			那么offsetLeft[Top]获取到的是到body的距离
+
+
+ 元素宽高取值
+
+	width height一样
+
+
+	元素.style.width : 样式宽
+
+	元素.clientWidth：可视区宽  //样式宽+padding值
+
+	元素.offsetWidth: 占位宽   //样式宽+padding+border
+
+
+
+在父级下插入子元素
+
+	父级.appendChild(要插入的元素) : 在父级的最后一个子元素后面插入括号里面的元素
+
+	父级.insertBefore(要插入的元素，被插入的元素) 方法 在指定元素前面插入一个新元素
+
+		在ie下如果第二个参数不存在，就会报错
+
+		在其他的浏览器下如果第二个参数的节点不存在，则会以appendChild的形式进行添加
+
+	父级.replaceChild（新节点，被替换的节点） 替换子节点
+
+	appendChild insertBefore replaceChild 都可以操作动态创建出来的节点，也可以操作已有的节点
+

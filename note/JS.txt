@@ -1,0 +1,462 @@
+		汤姆大叔JS 博客 	
+	获取样式的方法
+
+		getComputedStyle(元素)[需要获取的样式] //IE9以上
+
+		元素.currentStyle[需要获取的样式] //只支持IE低版本
+
+		function getStyle(element,style){
+
+			if(element.cuttentStyle){
+				return element.currentStyle[style];
+
+				}else{
+				return getComputedStyle(element，false)[style];
+				}				
+			}
+
+
+	cssText  操作行间样式  例子 Id.style.cssText =""; 表示删除id中所有的行间样式
+
+
+	setInterval 和setTimeout 的区别
+
+		setInterval 会不断循环；
+
+		setTimeout 只会定时触发一次，可以使用递归的方式实现不断循环的效果
+
+		递归就是不断的调用自己本身；
+
+		function a (){
+
+			setTimeout(function(){
+
+			console.log(0};
+		
+			a();
+
+			,1000)}
+
+
+
+
+		transition
+
+		transition-relay:1s  	延迟时间
+
+		transition-duration 1s	持续时间
+
+		transition-property：width	要修改的属性
+
+		transition-timing-function: 	动画效果
+
+
+
+		transition all ls ease-in-out 2s  第一个时间是过渡（持续）时间 第二个是时间是延迟
+
+
+
+		DOM  文档对象模型
+
+		html= document.documentElement
+
+		body= document.body
+
+		访问子节点
+
+		element 代表元素的ID或class名
+
+		element.childNodes 返回子节点的集合，包括文本节点 即子节点之间的空格。
+
+		element.children  返回的是元素标签节点，不包括文本节点
+
+		element.previousSibling	 返回上一个兄弟节点 如果有空格的话 就会找到这个空格 
+
+					 要这样写element.previousSibling.previousSibling
+
+		element.nextSibling  返回下一个兄弟节点
+
+		element.firstChild  返回第一个子节点 包括文本字节点
+
+		element.lastChild   返回最后一个子节点包括文本字节点
+
+		注:如果没有子节点，返回null		
+
+		element.hasChildNodes()	是否有子节点，返回布尔值，有为true，没有为false
+
+		
+
+	 访问父节点
+
+		element.parentNode  访问父节点
+
+		element.offsetParent	访问有定位属性的父节点 
+
+
+		Node类型
+
+		nodeType = 1 表示是一个元素节点
+
+		nodeType = 3 表示是一个文本节点
+
+		nodeType = 8 表示是一个注释节点
+
+
+		nodeName  返回的是元素的标签名，值是大写字母
+				
+			  如果是一个文本节点就返回“#text”
+
+		nodeValue 返回文本节点和注释节点的值
+
+
+
+	操作节点
+
+		
+		var child = node.appendChild(child);  在最后增加一个子元素
+
+		node 是要插入子节点的父节点 父节点
+
+		child 要插入的节点，child也是一个返回值
+
+
+		insertBefore
+
+			var child = node.insertBefore(child.reference);
+
+			child 表示插入的子节点
+
+			node	表示父节点
+
+			reference  在插入child之前的节点
+
+
+		replaceChild()
+
+			var child =node.replaceChild(child,oldChild) 
+
+				child 表示新的子节点
+
+				node  表示父节点
+
+				child  表示新的子节点
+
+				oldchild  表示要替换的子节点
+
+		removeChild();
+
+			
+			var oldChild = node.removeChild(child);
+
+				oldChild 表示被删除的子节点
+
+				node	表示父节点
+
+				child	表示要删除的子节点
+
+
+		cloneNode(BOOLEAN);
+
+			var newNode = node.cloneNode();
+
+			newNode	克隆返回的新节点
+
+			node	表示要被克隆的节点
+
+			BOOLEAN	如果是true，表示深拷贝（复制所有包括子元素）
+
+				如果是false，表示是浅拷贝，只拷贝当前节点
+
+				默认是false；
+ 
+
+		创建节点
+			dom 操作非常耗费性能
+
+			createElement（）；
+
+			创建单个元素；
+
+			DocumentFragment();
+
+			创建一个文档碎片
+
+			document.createDocumentFragment()
+
+			创建一个文档碎片
+
+
+
+	Element 属性操作
+
+		element.getAttribute(属性)
+
+			获取属性值
+
+			可以访问内置属性（class、id），也可以是自定义属性
+
+
+		element.setAttribute(属性，属性值)（class、wrap）--》class=“wrap”
+
+			设置属性值
+
+			可以设置内置属性，也可以设置自定义属性
+
+
+		element.removeAttribute（属性）
+
+			删除属性
+
+			可以删除内置属性，也可以删除自定义属性	
+	
+
+访问子元素扩展（只支持IE9以上）
+
+
+		element.childElementCount
+
+
+		只读属性，访问该元素有多少个子元素
+
+		
+
+		element.firstElementChild
+
+		只读属性，返回元素的第一个子元素，不包括空的文本节点
+
+
+		element.lastElementChild
+
+		只读属性，返回元素的最后一个子元素，不包括空的文本节点
+
+
+		element.previousElementSibling
+
+		只读属性，访回同级的上一个元素
+
+		
+		element.nextElementSibling
+
+		只读属性，访回同级的下一个元素
+
+
+	classList
+
+		可以接受多个参数，用逗号隔开；
+
+		add（value) 添加一个class
+
+		remove（value）删除一个class
+
+		contains（value）是否包含class，返回true和false
+
+		toggle（value）如果存在class就删除，不存在就添加
+
+
+	insertAdjacentElement(position,element)
+
+
+		position :
+
+		"beforebegin"	在该元素本身前面
+
+		"afterbegin"	在该元素的第一子元素前面
+
+		"beforeend"	在该元素的最后一个子元素后面
+
+		"afterend"	在该元素本身后面
+
+		element 表示要插入的元素
+
+
+	insertAdjacentHTML(position,string)  这个是把字符串插入到标签里面
+
+		第一个参数同insertAdjacentElement
+
+		第二个参数是html字符串
+
+
+
+		
+	BOM 
+
+		浏览器对象模型  browser window
+
+	IE chrome：支持
+
+		screenLeft 浏览器到屏幕左边的距离
+
+		screenTop   到顶部的距离
+
+	IE9++ chrome firefox 支持
+
+		screenX	浏览器到屏幕左边的距离
+
+		screenY	到顶部的距离
+
+
+	窗口的移动
+
+	window.moveTo(x,y)
+
+
+	文档已滚动的像素值
+
+	chrome Firefox 支持 IE不支持
+
+		scrollX
+
+		scrollY
+
+	IE8 不支持
+
+		pageXOffset
+
+		pageYOffset
+
+	判断是否支持pageOffset
+
+	 supportPageOffset = true 代表支持
+
+	 supportPageOffset = false 代表不支持
+	
+
+	var supportPageOffset = window.pageXOffset !== undefined;
+
+	
+
+	判断是否是混杂模式
+
+
+	 var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");  三个等号 表示 全等 不仅是值要相等 类型也要相等
+
+
+	如果supportPageOffset = true; 那么返回window.pageXOffset
+
+	如果 supportPageOffset = false。判断是否是混杂模式
+
+	var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft :document.body.scrollLeft;
+
+	var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop :document.body.scrollTop;
+
+
+
+	滚动条事件
+
+	window.onscroll = function(){}
+
+
+	获取窗口的大小
+
+	IE9+ Firefox chrome 支持
+
+	window.innerWidth ：获取内容窗口的宽度
+
+	window.innerHeight: 获取内容窗口的高度
+
+	
+	IE8 以下的
+
+	document.documentElement. clientWidth 获取内容窗口的宽度
+
+
+	document.documentElement. clientHeight 获取内容窗口的高度
+
+	获取元素到浏览器的距离
+	element.getBoundingClientRect()  //返回的是一个对象 
+
+	如果想获取元素到顶部的距离就可以这样加
+
+	element.getBoundingClientRect().top
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

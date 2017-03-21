@@ -1,0 +1,25 @@
+
+
+		Trident内核 ：也称ie内核 360浏览器使用的也是ie内核
+
+
+		Webkit内核： 谷歌chrome浏览器，也叫谷歌内核  safari
+
+
+		Gecko内核：Mozila和FireFox 也是用该内核的
+
+
+		Presto内核：目前只有opera浏览器采用给内核
+
+
+
+		CSS3兼容各版本浏览器前缀
+
+
+	-Webkit-	chrome、safari
+
+	-moz-		firefox
+
+	-ms-		IE
+
+	-O-		opea

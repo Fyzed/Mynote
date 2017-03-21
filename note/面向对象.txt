@@ -1,0 +1,107 @@
+
+	JS是一门面向对象的语言
+
+	函数式编程
+
+	c是面向过程
+
+
+	特点：面向接口
+
+
+	所有的JavaScript的对象都是从某个对象上克隆过来的
+
+
+prototype  继承
+
+
+	function Person(){};
+
+	var xiaominag = new.Person; 创造了一个对象
+
+	xiaoming.age = 18;给对象添加了一个属性
+
+
+	Person()是一个构造函数 有一种约定  首个字母要大写；
+		
+		构造函数里的this 是指向新对象的
+
+
+创建对象的过程：
+
+		创建一个新实例，必须要使用new操作符
+
+		将构造函数的作用域赋给新对象（this指向该对象）
+
+		为这个新对象添加属性
+
+		返回新的对象
+
+
+ 原型prototype
+
+	每一个函数都有一个prototype属性 而他是继承object的，指向一个对象
+
+
+	1、video.prototype = video 这个函数 new出来的对象
+
+	2、new出来的对象 包含video函数里面this指向的属性
+
+	3、new出来的对象 也包含了video.prototype 下的属相和方法
+
+	4、video.prototype下的方法里面的this   这个this指向new出来的对象
+
+
+constructor 访问对象的构造函数 用法：对象名.constructor;
+
+
+instanceof 和typeof 比较像；用来检测对象是否属于该构造函数
+
+		返回的是布尔值  用法：（对象名  instanceof  构造函数名）
+
+	1.基础类型有哪些
+
+	2.什么是闭包？
+
+	（函数里面的函数，访问作用域内的变量）
+
+	3.什么是原型？（js的继承）
+
+	   通过prototype来继承（访问原型）
+	
+	4.B构造函数怎样继承A构造函数
+
+		//A 是父类
+
+		//B 是子类
+
+		function A（）{}；
+
+		function B（）{}；
+
+		var a = new A;
+
+		B.prototype = a;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

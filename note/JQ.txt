@@ -1,0 +1,280 @@
+	
+	jquery .0-1.12
+
+		支持所有浏览器 体质比较大
+
+	jQuery 2.x
+
+
+		（过渡产品，以废弃）
+
+	jQuery 3.1.1
+
+		兼容pc和移动端，支持IE9以上版本浏览器
+
+	jQuery1.12 ：开发 版本 287KB
+
+		     压缩版本 95KB
+
+		    服务器压缩gzip 35KB
+
+jquery 选择器：
+
+
+		选择id $("#box")  传入一个id前面加#号
+
+		选择class  $(".box")
+
+		选择元素 $(""div)
+
+
+		选择多个元素 $("div,span") 逗号分隔
+
+		选择子元素  $("#div span") 中间用空格分隔 子元素下面的元素 就在上一个空格
+
+
+	注意：$(".box")[0] 返回的是一个普通的元素，不是jQuery对象
+
+	可以用.eq(index) 选择单个元素 index 是下标
+
+	.find() 找到父级元素下的所有子元素 如果想找到ul下的li 就在括号里面写li->.find('li')
+
+	.first() 获取集合元素里的第一个元素
+
+	.last（）获取集合元素里的最后一个元素
+
+	如：ul下的li $(“lis”).first(); 表示第一个li
+
+
+
+添加class 和删除class ,hasClass 判断是否存在该class
+
+
+		.addClass（）
+
+
+		.removeClass（）
+
+		.hasClass()
+
+		.toggleClass()
+
+		如果当前jq元素存在该class，就把当前该class删除，如果没有那就添加
+
+
+添加行内样式
+
+		.css()
+
+		有两种参数也是写法
+
+		.css("background","red")
+
+		.css({
+		
+		background : "red",
+
+		height:800
+
+		})
+
+
+jQuery 绑定事件
+
+	$(".ul").bind("click",function(){});
+
+	$(".ul").on("click",function(){});
+
+	on 可以通过第二个参数进行事件委托
+
+	$(".ul").on("click",“li”,function(){});
+
+	
+jquery 移除事件
+
+	$(".ul").unbind("click")
+
+	$(".ul").one() 绑定一个事件，只执行一次
+
+jQuery 触发绑定的事件
+
+	$(".ul").trigger("click");自动触发 比如你给ul添加了一个点击事件 
+
+				然后添加了这个可以不用点击就能执行这个事件了
+
+
+jQuery  dom 操作
+
+克隆元素
+
+ 	.clone() 返回的是一个jq对象 使用可以直接调用jq的方法
+
+ 插入元素
+
+	parent.append(child) 在父级的最后一个子元素插入元素
+
+	parent.prepend(child)在父级的第一个子元素前插入元素
+
+	child.appendTo(parent)
+
+	append,appendTo区别在于子节点和父节点的位置
+
+
+删除元素
+
+	$(".ul").remove()  返回的是被删除的元素
+
+
+清空元素的所有子元素和内容
+
+
+	$(".ul").empty()
+
+
+获取input的value值
+
+	val（);
+
+
+获取元素的内容
+
+	html();
+
+获取同级元素
+
+	siblings();
+
+属性操作
+
+	attr();
+
+jquery循环
+
+	$.eac();
+
+
+
+//call apply $.proxy()
+
+
+	call(object,arguments1);
+
+使用call运行函数，第一个参数指定了运行时候this的值
+
+	平常调用函数的时候：fn1(); call是属于函数的方法  使用是这样 fn1.call(对象,参数，参数2)
+
+	注意 第一个是一个对象来的 通常在封装的函数里面是用this来表示的 这个是必须有的
+
+		function fn(arg,arg1){
+			console.lig(this,arg,arg1);
+		}
+
+
+
+	apply(object,["arguments"])
+
+使用apply运行函数，第一个参数指定了运行时候this的值
+
+	第二个参数，就是传递给函数的参数是一个数组
+
+	call和apply的区别：传的参数 不一样
+
+
+arguments 可以接收参数
+
+
+	function fn(){
+
+		console.log(arguments)  打印出来的是一个数组
+				
+		函数那里没有设置参数 ，然后执行的时候给它添加了参数
+
+		这时候可以用arguments来接收传进来的参数。
+	}
+
+	fn("ad","fd");
+
+
+$.proxy(fn,object) 第一个参数是一个函数，第二个就是对象
+
+
+jQuery动画
+
+	animate（{left：1000}，“fast”，function（）{}）
+
+
+//正则表达式
+
+
+	正则表达式就是通过规则匹配要找的东西
+
+	声明一个正则。用两个斜杠  如；reg = /\w/;
+
+	. 匹配任意字符
+
+	\w 匹配字母数字和下划线
+
+	\s 匹配空格
+
+	\d 匹配数字
+
+	^  表示开始的字符
+
+	$  表示结束的字符
+
+	\d{x} 表示匹配x位数字 x必须是数字
+	\d{x,y} 表示匹配x位到y位数字，y也必须是数字
+
+	g   表示匹配全局 匹配多次
+
+
+	i   表示不区分大小写 
+
+	[]  中括号里面的集合表示或者，只要满足其中一个条件就匹配成功
+
+
+	（） 表示匹配完整的字符串
+
+	 *   表示重复零次或更多次
+
+	 +   表示必须出现一次或者多次
+
+	 ？   表示出现零次或者一次
+
+	[a-zA-Z]  表示匹配所有大小写字母
+
+	[a-z]  匹配小写字母
+
+	[A-Z]  匹配大写字母 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+textarea(双标签)
+
+
+	创建一个文本输入框
+		可以固定宽高和用overflow-x、overflow-f来控制X轴和Y轴滚动条的出现。overflow-x:hidden；
+	resize:none;属性可以禁止缩大缩小
+	maxlength:设置最大字数
+
+把div（块元素）变成可编辑元素
+
+	1-webkit-user-modify:read-write;富文本编辑框.可复制带有样式的文本和图片
+	缺点：只支持webkit内核的浏览器
+
+	2、-webkit-user-modify:read-write-plaintext-only;文本编辑框  不能复制带有样式的文本和图片
+
+	缺点：只支持webkit内核的浏览器
+
+	3、contentEditable="true"富文本编辑框
+	 块元素的属性
+
+
+fill-available
+	自动填充剩余空间
+	可以代替width：100%；
+	只支持webkit内核浏览器，需要加上前缀-webk-fillavailable；
+
+	width：-webk-fillavailable；
+
+max-content
+
+	控制div宽度
+
+	width：-webkit-max-content；
+	当前div里面哪个行内元素宽度最大，就取这个值为div的宽度
+
+min-content
+	width：-webkit-min-content;
+	如果内容全部是文字，那么就取一个文字的宽度，里面包含一个单词时以最大的单词宽度为准。
+	如果内容包含图片就以图片宽度为准
+
+fit-content
+
+	width：-webkit-fit-content；
+	把div元素转换成类（display：inline-block）行块元素
+
+max min
+
+	max-width：表示最大宽度
+	min-width：表示最小宽度
+	max-height：表示最大高度
+	min-height：表示最小高度
+
+
+CSS媒体查询
+
+	@media 媒体查询
+
+		link引入样式
+
+		<link rel="stylesheet" media="(max-widht:800px)" href="style.css">
+		link添加media属性，media属性值是一个表达式（max-width：800px）
+
+		and关键字
+
+		<link rel="stylesheet" media="(min-widht:600px) and（max-width：800px）" href="style_2.css">
+
+		可以把多个表达式用and关键字链接起来，表示并且的意思
+
+		not 把表达式结果取反
+
+		only 指定的媒体查询值 
+
+		样式内部引入媒体查询
+
+		@media screen and （max-width：800px）{}
+
+		这段表示在显示屏幕下并且宽度小于八百时候显示里面的样式
+
+		逗号（，）表示或者
+
+		@media screen and (max-width:300px) , (nin-width:600px)
+		两个表达式中间用逗号隔开，表示或者，只要满足其中一个条件就执行给样式
+
+		<link rel="stylesheet" media="(max-widht:300px) , (min-width:600px)" href="style_2.css">

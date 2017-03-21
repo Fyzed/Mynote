@@ -1,0 +1,189 @@
+
+	事件流
+
+	DOM事件流三个阶段：
+
+		事件捕获阶段  html  body  div (事件目标表节点)
+
+		处于目标阶段  div（事件目标节点）
+
+		事件冒泡	div（事件目标节点） body html
+
+
+	事件添加方法：
+
+	element.addEventListener(事件类型，处理函数，布尔值（默认是false）)
+
+		事件类型：类型前面不用加“on”，比如onclick,传递的参数是“click”
+
+		处理函数：function（）{}
+
+		布尔值：true 表示捕获，false表示冒泡，默认是false
+
+
+	可以给一个元素添加多个事件，不会覆盖前面的事件的；
+
+
+	移除事件:
+		element.removeEventListener(事件类型，处理函数，布尔值（默认是false）)
+
+	
+		事件类型：必须和绑定的事件类型一样 如“click”
+
+		处理函数：单独声明的处理函数的函数名。也必须和绑定的处理函数一样
+
+		布尔值：默认是false
+
+
+		function dd(){} 定义一个函数
+
+		element.removeEventListener('click',dd,false) 里面的函数名不要加（）
+
+		element.addEventListener('click',dd,false)
+
+
+
+	IE8低版本浏览器
+
+
+		事件绑定：
+
+		element.attachEvent （事件类型，处理函数）
+
+		事件类型：事件类型前面要加on 如“onclick”
+
+		处理函数：触发的函数   同上
+
+		移除事件：
+
+		element.detachEvent（事件类型，处理函数）
+
+		事件类型：事件类型前面要加on 如“onclick”
+
+		处理函数：单独声明的处理函数的函数名，也必须和绑定的处理函数一样
+
+
+	解决浏览器兼容性的问题 封装函数：
+
+
+		function addEvent（element，type,fn）{
+
+			if(element.addEventListener){
+
+			element.addEventListener(type,fn,false)
+
+		}else{
+			element.attachEvent("on"+type,fn,false)
+
+			}
+		}
+
+		function removeEvent（element,type,fn）{
+
+			if(element.removeEventListener){
+
+			element.removeEventListener(type,fn,false)
+
+		}else{
+			element.detachEvent("on"+type,fn,false)
+
+			}
+		}
+
+		function fn(){
+			alert(1);
+			}
+
+		调用函数：
+
+		addEvent（btn，"click",fn）
+
+		removeEvent（btn，"click",fn）
+
+
+
+	event 对象的属性
+
+		event.type 获取事件的类型 如“click”，“mouseover”
+
+		event.target 获取事件的目标元素
+
+		event.stopPropagation() 阻止冒泡
+
+
+	IE 的对象属性
+
+		event.type	获取事件的类型
+
+		event.srcElement 获取事件的目标元素
+
+		event.cancelBubble = true 阻止冒泡 默认是false
+
+
+	兼容写法:
+
+
+		addEvent("btn","click",function(event){
+
+			var ev = window.event || event;
+
+			var target = ev.target || ev.srcElement;
+
+			if(ev.stopPropagation){
+
+				 ev.stopPropagation();	
+
+				}else{
+				
+				ev.cancelBubble = true;					
+
+				}
+			})
+
+
+	Node.contains(child) 判断child是否是Node的子元素
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

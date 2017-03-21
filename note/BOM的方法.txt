@@ -1,0 +1,87 @@
+
+	BOM 浏览器对象模型
+
+	方法：
+
+	open(页面的地址url，打开的方式) 方法 打开一个新的窗口（页面）里面接受至少两个参数
+
+		如果url为空，则默认打开一个空白页面
+
+		如果打开方式为空，则默认为新窗口方式打开 打开方式 有_self
+
+	返回值： 返回新打开的窗口的window对象
+
+	close() 方法 关闭窗口
+
+	注意：它有很多的兼容性问题
+
+	1.firefox：默认无法关闭
+
+	2、chrome：默认直接关闭
+
+	3、ie：询问用户是否关闭
+
+	可以关闭在本窗口通过js方法打开新的窗口
+
+ 重点：
+
+	window.navigator.userAgent  通过这个东西可以获取到浏览器的信息 它的类型是字符串
+
+	可以用这个去判断该浏览器是什么浏览器然后执行不同的代码 
+
+	判断方法：
+
+	if(window.navigator.userAgent.indexOf("MSIE") !=- 1){
+		alert("我是ie")
+	}else{
+
+		alert("我不是ie")
+	}
+
+
+	window.location :浏览器地址信息
+
+	window.location.href : url 域名的信息
+
+	window.location.search :url?后面的内容
+
+	window.location.hash ： url#后面的内容
+
+
+	浏览器可视区尺寸
+
+	document.documentElement.clientWidth 可视区的宽度
+
+	document.documentElement.clientHiehgt 可视区的高度
+
+		
+	滚动条滚动的距离
+
+	document.body.scrollTop[scrollLeft]
+
+	document.documentElement.scrollTop[scrollLeft];
+
+	这个是有兼容性问题的 解决方法
+
+	var scroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+
+	内容高度
+
+	document.body.scrollHeight
+
+	document.scrollHeiht(widht,height)
+
+	document.body.offsetHiehg 获取
+
+	窗口的两个事件
+
+	onscroll: 当滚动条滚动的时候触发
+
+	onresize：当窗口大小发生改变的时候触发
+
+
+
+
+
+

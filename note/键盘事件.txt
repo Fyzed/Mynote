@@ -1,0 +1,12 @@
+
+
+	onkeydown:当键盘按键按下的时候触发
+
+	onkeyup:当键盘按键抬起的时候触发
+
+
+
+	event.keyCode:数字类型 键盘按键的值 键值 也是有兼容性的
+
+
+	var ev = ev || event;

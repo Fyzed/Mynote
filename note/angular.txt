@@ -1,0 +1,380 @@
+
+
+	angular：是基于javascript的客户端应用开发的框架，可以做简单的web应用开发
+
+		主要做的是CRUD应用和SPA单页面的应用
+
+	angular的一些特性：
+
+		MVC模式
+
+		模块系统
+
+		指令系统
+
+		依赖注入
+
+		双向数据绑定
+
+	M表示 model 数据   也就是javascript的那一部分
+
+	V表示 view 视图	   就是html表现的视图
+
+	C表示 controller 控制台		把model 和view 连接在一起 
+
+	当视图发生数据改变时，数据也会改变，当数据发生改变了，视图也会刷新 呈现出新改变的数据
+
+	这就是数据的双向绑定。
+
+	如果想要在那里运用angular 就要在相应的根节点 添加ng-app 这个就表示angularjs的作用域，然后angularjs的
+	应用只会在这个根节点里面执行，这就方便了我们去修改、维护。如：
+
+	<html ng-app>
+		就表示在整个html文档中都可以使用angularjs的那些功能
+	</html>
+
+$scope angularjs内置的一个局部对象
+
+	我们在数据模板上添加的数据都是要加载$scope身上的，如果不加载在它身上的话 就会找不到的
+
+	function aa($scope){
+		
+		$scope.name = "hello";
+	}
+
+	<div ng-controller = aa>//注意controller控制器在angular1.3版本之后就不支持全局的写法了 
+
+		<p>{{name}}</p> //输出的结果就是hello
+
+	</div>
+$rootScope 这个就是angularjs内置的一个全局对象 上面说过$scopt 是一个局部的作用域 所以他身上挂载的数据
+
+		就只能在他挂载的那个控制台里面能找到，如果不在控制台里面，或者没有设置全局$rootScope的话 就会找不到的
+
+	而且这个作用域里面的那些属性也跟我们js中的作用域链差不多的 如：
+
+	function aa($scope){ $scope.name = "hi";$rootScope.age="20";}
+
+	function bb($scope){$scope.name ="hello;"；$scope.age="15";}
+
+	<div ng-controller ="aa">
+		<p>{{name}}</p>
+			
+		<div ng-controller="bb">
+			<p>{{age}}</p>
+		</div>
+	</div>
+
+	上面输出的结果是 hi 和 20；为什么会出现20呢 就是因为作用域的问题 如果在里面找不到的话 他就会继续往外面找，就类似我们
+
+	js中的变量一样，会一直往外找的，所以就出现20 
+
+	如果设置有全局的对象的话，它会先找最近的 如果在当前的作用域找不到的话，才会去找外面的
+
+	
+重点：函数中的那两个形参即$scope 和$rootScope 这连个参数是不能修改的
+
+	因为我们是要靠这两个参数来依赖注入 也就是我要实现什么功能就要依赖这两个参数去实现，如果修改了在angularjs的文件中
+
+	就会找不到，所以就会执行不了。
+
+        而且所有以$符号开头的变量都可以叫:服务。
+
+
+指令系统：
+
+	ng-app  这个是一个初始值，如果html文档中没有这个值的话，所有的angularjs功能都不能实现
+
+		只有元素挂载了这个初始值，就能使用angularjs的功能
+
+	ng-controlelr:这个表示控制器；相当于视图和数据之间的桥梁 只有给元素挂载了这个属性，才能把model中的数据绑定在视图中
+
+
+数据的双向绑定
+
+	MVVM模式 m：表示数据  v：表示视图 vm:表示数据模型 就是通过这个vm来实现数据的双向绑定的 
+
+	angular的一些服务指令：
+
+	$timeout:类似于js中原声的使用方法 定时器
+
+	$ag-click:类似于js的点击事件，其他事件也是一样
+
+	$ng-model:数据双向绑定指令 只有设置了这个属性 才可以实现数据的双向绑定
+
+例子：
+
+	function aa($scope,$timeout){ $scope.name = "he";$timeout(function(){$scope.name = "hh";},2000)}
+	
+	<div ng-controller = "aa"> <p>{{name}}</p></div>  输出的结果是一开始是he 两秒之后变成了 hh
+
+数据双向绑定例子：
+
+	function aa($scope,$timeout){ $scope.name = "he";}
+
+	<div ng-controller = "aa">
+		
+	<input type="text" ng-model = "name">
+
+	 <p>{{name}}</p>
+
+	</div>
+
+	这样你在input里面输入了值 然后p里面 的值也会跟着变 这就是数据双向绑定原理
+
+
+过滤器：currency; 可以自动帮我们把数字转换成货币格式；
+
+	如 $scope.age ="2000";  {{age | currency}}这个输出结果是$200.0
+
+	如果想把$换成￥符号的话 就这样写 currency:'￥';这样输出的结果就是￥200.0
+
+							
+$watch:监听事件  
+
+	它是挂载在$scope下面的一个方法 他有三个参数 
+
+	$scope.iphone = { money:5,num:1;fre:10}
+
+	$scope.show = function(){return $scope.iphone.money * $scope.iphone.num;}
+
+	使用方法
+
+$scope.$watch(a,b,c) 里面传的是三个参数
+
+
+a:表示监听的元素  可以是字符串 和函数  
+
+	字符串的写法 $scope.$watch('iphone.money',b,c) 监听到的是iphone里面的money这个值，如果这个值发生变化的话就会触犯
+
+							b这个回调函数，
+
+	函数的写法：$scope.$watch('$scope.show',b,c)	同理 监听到的是show这个函数 同上。
+
+b:表示的是一个回调函数
+
+		就是当你监听的那个元素放生改变的时候 就会触发这个函数 
+
+		他有两个参数 function(newVal,oldVal){ console.log(newVal,oldVal)} 
+
+		newVal  这个是你监听的元素发生改变后的值
+
+		oldVal  这个是你监听的元素没发生改变的值
+
+c:是一个可选的值 为false 和true
+
+		false的时候：监听的是iphone里面的某一个值
+		
+		true：表示的是深度监听也就是iphone 里面的每一个属性值发生改变的时候都可以监听到
+
+
+angular模块创建的方法
+
+
+		angular.module(a,b); 它是通过在这个方法来创建模块的 里面有两个参数
+
+		a:表示你创建模块的名字 如：myApp
+
+		b:是一个数组。里面表示你要依赖的其他模块
+
+		var m1 = angular.module("myApp",[]) 这样就创建完成了 
+
+	不过写成这样的模块之后 html上的那个ng-app 就要修改了
+
+		比如一开始初始化 要调用那个模块 就修改成 <html ng-app="myApp">
+
+		这样就表示一开始这个页面就是依赖m1这个模块的
+
+创建模块之后，你要往模块里面添加东西的话 要通过controller控制器来实现
+
+	m1.controller("函数的名称",function($scope){
+
+			$scope.name = "hi";
+
+		})
+
+	这样就可以了 但是有一个要注意的地方就是函数里面的那个形参，我们知道我们是通过这个形参来依赖注入的
+
+	但是如果压缩代码的话 会把$scope压缩成$s 这个在angular里面是找不到的 所以就会报错
+
+	解决的方法：
+
+	m1.controller("函数的名称",["$scope",function($scope){
+
+			$scope.name = "hi";
+
+		}])
+
+	用一个数组把函数包起来，然后第一个参数就是$scope,这样虽然会被压缩但是 还是可以通过第一个参数来找到$scope的
+
+	所以我们尽量用第二种方法写模块。
+
+ angularJs的工具方法
+
+angular.bind() ：可以改变this的指向
+
+
+	function show(a,b){alert(a;)alert(b);alert(this)}
+
+	angular.bind(document,show)();
+
+	对象就指向了document对象
+
+	也可以传参 传参的写法有三种
+
+	angular.bind(document,show)(3,4);
+	angular.bind(document,show，3,4)();
+	angular.bind(document,show，3)(4);
+
+
+angular.copy();拷贝对象
+
+	var a={name:"aa"}
+		
+	var b={age:"20"}
+
+    	var c={};
+
+	var c=angular.copy(a)  c就变成了a
+
+	二：
+	var c =angular.copy(a,b) 前面的a会把所有值覆盖 然后给了b 最后b也变成了跟a一样的属性
+				也就是age=20没有了 变成了 name="aa";
+
+
+angular.extend(); 对象继承
+
+
+	var c= angular.extend(b,a) 这样输出的结果就是 var b={age:20,name:"aa"};
+
+	b把a的属性值继承了  c跟b是一样的
+
+其他的工具方法：主要是用来判断的
+
+	angular.isArray() :判断是否是一个数组 真就返回true 假就返回false
+
+	angular.isDate():判断是否是时间对象
+
+	angular.isDefined():判断存在
+
+	angular.isUndefined():判断不存在
+
+	angular.isFunction()
+
+	angular.isNumber()
+
+	angular.isObject()
+
+	angular.isString()
+
+	angular.isElement();判断是否是元素
+
+	angular.vresion  可以用来查询你用的angular是哪个版本的
+
+	angular.equals();判断两个值和类型是否相等 就放在括号里面判断 
+
+
+	angular.forEach();用来遍历数组和json的  里面有三个参数 
+
+		第一个表示要遍历的数组或json的名称，第二是回调函数 回调函数有两个参数： 值 和下标 第三个是返回的结果 
+
+		在回调函数里面的那个this指向的就是result这个参数
+
+	var result=[];
+
+	var arr= {"name":"jh","age":"20"}
+
+	angular.forEach(arr,function(val,i){
+
+		 this.push(val+ i)
+	},result)
+
+	console.log(result)  输出的结果是 ["jhname","20age"]
+
+
+	angular.fromJson();把字符串转换成一个对象
+
+	angular.toJson();把对象转换成字符串 里面有连个参数 第一个就是对象的名称，第二个是true 它会自动换行的 
+
+
+	angular.identity():里面传的是什么参数，返回的值就是那个参数 
+
+	angular.noop();返回的是一个undefinde 这两个参数一般是用来做辅助的作用的 可以用来防止出错
+
+	angular,lowercase/uppercas(); 前面的是把大写转换成小写 后面的是转换成大写
+
+	angular.element() : 可以对获取到的元素进行一些类jquery的操作 
+
+		如; var box = document.getElementById('box');
+	angular.element(box).css("background","red") 进行这样的一个操作 具体有哪些方法看官方文档
+
+	如果引入了jquery库的话 angular.element == $;因为angular中内置了一些jquery的一些方法 但是如果引入了
+
+	jquery，那些方法就显得比较鸡肋了
+
+	angular.bootstrap();动态初始化ng-app; 里面有两个参数
+
+	angular.bootsrtap(你要初始化的元素，挂载那一块模板)
+
+	动态创建有什么好处
+
+	一把如果我们手动初始化的话，比如给两个div手动添加 ng-app="app1" 和ag-app="app2" 
+
+		结果只会初始化一次的 第二个div的初始化是不会生效的
+
+	然后动态创建的话，是可以初始化多个模块的 就是一个页面如果想初始化多个模块的话 就 一定要用到angular.bootstrap()
+
+	
+
+$scope下的两个方法
+
+	$watch();就是用来监听数据的 如果数据发生了改变就会触发这个方法
+
+	$apply();这个方法是用来放在原生或者其他库中的一个用来监听数据的方法
+
+	如一开始的那个
+
+		function aa($scope){$scope.name = "hello";}
+
+		setTimeout（function(){
+		
+			$scope.name = "hi"  在前面的例子中这个数据是不会发生改变的
+
+		},2000）
+
+		setTimeout（function(){
+			
+			$scope.$apply(funciton(){
+
+				$scope.name = "hi" 这个数据发生改变了 视图那边也是会跟真改变的 这个就是apply的好处
+
+			})
+
+
+angular.module("模块名称"，[])数组表示依赖的模块
+
+	controller 初始化的是局部的作用域 里面的内容必须要元素挂载了这个控制器才能找到里面的内容
+
+	run  初始化的是全局的作用域 也就是$rootScope 用了这个的话 就可以不用挂载那些控制器，直接能找到模块里的内容
+
+	m1.run("$rootScope",function($rootScope){
+			
+			$rootScope.name = "hello";
+
+		})
+
+		}，2000）；
+	
+	<p>{{name}}</p>  输出的就是hello  这个就不用加载ng-controller = "app"
+
+
+
+
+
+
+
+
+
+
+
+
