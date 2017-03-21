@@ -1,0 +1,45 @@
+ECMAScript:标准、核心
+
+HTML 标签类型：block、inline 、inline-block、table...
+
+
+JS中的基本数据类型：number、string、Boolean、null、undefined
+
+typeof判断数据类型；var ii=2;alert(typeof ii);-->number
+
+
+显示类型转换（强制类型转换）：
+
+Number()
+
+paresInt()
+
+paresFloat()
+
+
+	NaN 是一个不是数字的数字类型；
+
+	NaN 如果用来判断的话 它是一个false
+
+  	一旦程序中出现了NaN 肯定进行了非法的运算操作
+
+	NaN 与自己度不相等
+
+
+	isNaN() 判断某些值是不是数字  返回true 或者false -> 不喜欢数字
+
+	主要是靠number来进行内部转换的
+
+
+从HTML中拿到的内容，类型都是字符串；
+
+
+
+函数传参 即重用代码 需要注意的事项
+
+
+	1、尽量保证HTML代码结构一致，可以通过父级选取子元素
+
+	2、把核心主程序实现，用函数包起来
+
+	3、把每组里不同的值找出来，通过传参实现

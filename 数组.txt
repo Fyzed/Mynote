@@ -1,0 +1,113 @@
+
+	快速清空数组的方法：设置数组的长度为0，就会把数组里面的内容全部清掉
+
+			还有就是可以定义一个新的空数组 重新给它赋值
+
+	数组定义有两种方式：
+
+	1、var arr=[];
+
+
+	2、var arr = new Arry(); 如果括号里面只填一个数字的话，就会表示是该数组的长度
+
+
+	数组除了可以使用for循环 还可以使用for in 但是json就只能使用for in
+
+
+
+
+	往数组里面塞东西
+
+	arr.push 往数组后面插入新的值，返回的是数组插入值之后的长度
+
+	arr.unshift 这个是往前面插入
+
+	arr.pop 删除数组的最后一个值，返回的是被删掉的值
+
+	arr.shift 删除数组的第一个值，返回的是被删掉的值、
+
+
+	splice（） 可以实现 删除、替换、添加 功能
+
+	splice（a,b,c）
+		 
+		a:表示从第几位开始
+
+		b:表示删除多少位
+
+		c:表示要替换的元素 即 即将插入数组的元素
+
+	var arr=["0","2","3"]
+
+
+	arr.splice(0,1) 表示删除第一位元素 返回的是被删掉的值
+
+	arr.splice(0,1,'zero')  表示把第一位替换成zero 然后新的数组是 arr=["zero","2","3"]
+
+	arr.splice(2,0,'zero') 表示在第二位那里插入一个新的元素即zero arr=["0","2","zero"，"3"]
+
+
+	随机排序的方法
+
+	var arr=[1,2,3,4,5,6,7,8,9,10]
+
+	arr.sort(function(a,b){
+
+		return Math.random - 0.5  random 会从0-1之间返回一个随机数 然后根据sort的原理来						 就会实现随机排序的方法了
+
+	})
+
+	sort()  把数组进行排序 它需要一个函数来判断的
+
+	reverse() 颠倒数组中元素的排序 
+
+	arr=[1,2,3,]
+
+	arr.reverse() arr=[3,2,1]
+
+
+	sort(funciton(a,b){
+
+		return a-b; 顺序从小到大  b-a 顺序从大到小
+
+			 原理是：随机从数组中抽取两个数来进行比较 如果是正数的话 就把那个
+
+				值大的往后面扔
+	})
+
+Math对象用于执行数学任务
+
+	Math.round() 四舍五入 
+
+		如果想返回一个0-10的数
+
+	Math.round(Math.random()*10)
+
+		如果想返回一个5-10的数
+
+	Math.round(Math.random()*5+5)  加5是因为无论随机返回的是什么数，加上5之后最小值都是5
+
+
+		如果想返回一个10-20的数
+
+	Math.round(Math.random()*10+10) 同理
+
+
+	根据上面就可以推理出一个公式
+
+	x-y
+
+	Math.round(Math.random()*(y-x)+x) 
+
+	Math.ceil() 向上舍入
+
+	Math.foor() 向下舍入
+
+	如果想返回一个1-x的数
+
+	Math.ceil(Math.random()*x)
+	
+
+
+
+

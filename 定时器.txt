@@ -1,0 +1,33 @@
+
+	定时器：时间概念
+
+	setInterval（函数，毫秒）； 重复执行
+
+	clearInterval(timer); 清除定时器
+
+
+	注意 如果定时器是有事件控制的话
+		
+		一定要在前面加一个清除定时器 不然你连续点击那个按钮的时候 
+
+		那个定时器它会不断的加速的
+
+
+	setTimeout(函数，毫秒） 只执行一次
+
+	clearTimeout(timer)  
+
+
+	让一个广告几秒之后出现 又在几秒之后消失 就可以用setTimeout
+
+	setTimeout(function（）{
+
+		Id.style.display = "block";
+		
+		setTimeou(function(){
+	       
+		Id.style.display = "none";
+
+		},3000)
+	
+	}，3000）

@@ -1,0 +1,82 @@
+ return：返回值
+
+	1）函数名+括号：fn1()等于return后面的值
+
+	
+		function fn1(){
+			
+		return 123;
+
+		}
+
+	即 fn1()==123
+
+	2）所有函数都有一个默认隐藏的return值，一开始都是未定义；
+
+	3）return后面的任何代码都不执行了；
+
+
+
+ arguments 当函数的参数个数无法确定的时候 可以用arguments
+
+	它和作用域是有关系的
+
+	var a =1;
+
+	function fn1(a){	a可以叫做形参 就是形式上的参数
+
+
+	arguments[0] = 3;	arguments 也是可以赋值的 跟变量差不多
+
+	alert(a);	//3
+
+	var a = 2;
+
+	alert(a)	//2
+
+	}
+
+	fn1(a);				--》fn1(1,2,3) 这个就叫做实参 意思是实际上传递的参数
+
+
+	alert(a);	//1
+
+
+
+获取样式
+
+	getComputedStyle(element)[style] 不兼容IE低版本
+
+	element.currentStyle[style]	不兼容高版本
+
+	兼容解决模式
+
+
+	 function getStyle(obj,attr){
+
+	return  obj.currentStyle[attr]? obj.currentStyle[attr] : getComputedStyle(obj，false)[attr];
+
+}
+
+	获取到的样式是计算机（浏览器）计算后的样式
+
+	background：url() red...	复合样式（不要获取）
+
+	backgroundColor			单一样式（不要用来做判断 还有路径也不要做判断）
+
+	获取的样式前面不要加空格 会提示underfined的
+
+	不要获取没设置后的样式：不兼容
+
+
+
+
+
+
+
+
+
+
+
+
+

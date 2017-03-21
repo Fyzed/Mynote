@@ -1,0 +1,110 @@
+ json 的写法
+
+	var json ={'name':"fly",'age':32}
+
+	访问json
+
+		alert(json.name)或者json['name']
+
+	var arr=[{'name':"fly",'age':32},{'name':"ll",'age':22}]
+
+
+		arr[0].name -->fly
+
+		arr[0].name +'今年有'+ arr[1]['age']; -->fly 今年有22
+
+
+	for-in 遍历json 读取json
+	
+	var json1 ={'name':"fly",'age':32,'fun':前段}最后一个不要加逗号
+
+	for（var attr in json1）{
+		alert(attr); -->name age fun  
+
+		laert([attr]) - -> fly 32 前段
+	}
+
+			var str="";
+			var num=0;
+			for(var attr in document){
+				str =str+num+"、"+ attr +"0"+ document[attr] +"<br>";
+				num++;
+			}
+				document.body.innerHTML = str;
+
+
+	快速清空数组的方法
+
+		var arr =[1,2,3];
+
+		arr.length = 0; 设置了它的长度为0的话，它会自动把后面的的元素删掉
+				这就是快效率清空数组的方法。
+
+		arr=[];这个办法也可以快速清空数组
+
+		alert(arr) -->1
+
+		数组里的这个属性是可以写的 字符串是不可写的
+
+			arr.length = 1;
+
+
+		向数组里面添加元素
+
+		arr=[1,2,3];
+
+		arr.push(4); 在数组的后面添加元素 如果alert(arr.push(4)) 它会返回添加元素后的数组的长度 也就是4了
+
+		arr.unshift(0);在数组的前面的添加元素 IE6/7不支持unshift这个返回值
+
+		arr.pop(); 删除数组的最后一位，返回的值呢就是被删掉的那个元素
+
+		arr.shift();删除数组的第一位，返回的值呢就是被删掉的那个元素
+
+
+		arr=["李"，”活”，“前”，“张”]
+
+		如果想把“张” 放到‘李’前面的话 可以这样
+
+		arr.unshift(arr.pop());
+
+		arr.push(arr.shift());同理
+
+
+
+		splice 方法。数组去重
+
+		splice ：删除 替换 添加
+
+		删除   arr.splic(0,2) 表示从0下标开始删除，删除两位 最后只剩下 “前”，“张”
+
+
+		替换  arr.splice(0,2,"老王") 也是下标从0开始 然后替换前面2个 把“李”“活”
+
+						替换成“老王”
+
+		添加  arr.splice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

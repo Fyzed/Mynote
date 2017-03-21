@@ -1,0 +1,32 @@
+
+	天	Math.floor(t/86400)
+
+	时	Math.floor(t%86400/3600)
+
+	分	Math.floor(t%86400/3600/60)
+
+	秒	Math.floor(t%60)
+
+
+	倒计时原理
+
+	现在的时间点（在变）
+
+	未来的时间点（不变）
+
+
+	未来的时间 减去 现在的时间点 剩下的时间就是要倒计时的时间
+
+	var iNow = new Date()  获取现在的时间
+
+	var iNew = new Date(2017,0,13,9,09,0)  未来的时间可以这样去定义
+
+
+	var t = Math.floor(iNow-iNew ); 获取到的是毫秒来的
+
+	var t =  Math.floor((iNow-iNew)/1000); 转换成秒 floor下舍入 
+
+						因为是有小数点的 所以把它转换成整数可以用这个
+
+
+	var str = Math.floor(t/86400)+‘天’+Math.floor(t%86400/3600)+‘时’+Math.floor(t%86400/3600/60)+‘分’+Math.floor(t%60)+‘秒’	
